@@ -5,6 +5,7 @@
 }
 
 body {
+    font-family: "Press Start";
     background: url('homepageBG.png') no-repeat center center fixed;
     background-size: cover;
     height: 100vh;
@@ -12,5 +13,9 @@ body {
 }
 
 .logo img {
+    width: 200px;
+}
+
+.recent-items img{
     width: 200px;
 }
