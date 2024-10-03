@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url('homepageBG.png') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    color: white;
+}
+
+.logo img {
+    width: 200px;
+}
