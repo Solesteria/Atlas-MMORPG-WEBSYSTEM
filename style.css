@@ -6,7 +6,7 @@
 
 body {
     font-family: "Press Start";
-    background: url('homepageBG.png') no-repeat center center fixed;
+    background: url('images/homepageBG.png') no-repeat center center fixed;
     background-size: cover;
     height: 100vh;
     color: white;
