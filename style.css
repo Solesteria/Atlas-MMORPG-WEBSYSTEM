@@ -61,9 +61,50 @@ body {
     justify-content: space-between;
     background-color: rgba(0, 0, 0, 0.25);
     padding: 5px;
+    align-items: center;
 }
 
 .welcome-msg h1 {
     font-size: 8px;
     padding: 10px 90px;
+}
+
+.search-bar {
+    width: 400px;
+    max-width: 400px;
+    margin-right: 50px;
+    background-color: #38213C;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.search-bar input {
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+    padding: 5px 3px;
+    font: 8px;
+    color: #A49F9F; 
+    font-family: "Press Start";
+}
+
+::placeholder {
+    color: #A49F9F;
+    font-family: "Press Start";
+    font-size: 8px;
+}
+
+.search-bar button img {
+    width: 15px;
+}
+
+.search-bar button {
+    border: 0;
+    border-radius: 10px;
+    width: 40px;
+    height: 30px;
+    background-color: #7E618B;
+    cursor: pointer;
 }
