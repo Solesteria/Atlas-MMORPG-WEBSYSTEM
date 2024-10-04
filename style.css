@@ -10,25 +10,60 @@ body {
     color: white;
 }
 
-.login-register {
-    position: absolute;
-    right: 0px;
-    padding: 15px;
+.login-register ul {
+    list-style-type: none;
+    padding: 10px;
+    margin: 0 15px;
+    text-align: right;
+}
+
+.login-register li {
+    display: inline-block;
 }
 
 .login-register a {
     text-decoration: none;
     color: white;
+    display: block;
+    padding: 0 5px ;
     font-size: 10px;
 }
 
-.logo {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+.box-container {
+    background-image: url("/images/BG.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.logo img {
-    width: 700px;
+.navigation-bar ul {
+    list-style-type: none;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.navigation-bar a {
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+    display: block;
+    text-align: center;
+    font-size: 13px;
+}
+
+.navigation-bar li {
+    float: left;
+    width: 120px;
+}
+
+
+.bbx-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.25);
+    padding: 5px;
+}
+
+.welcome-msg h1 {
+    font-size: 8px;
+    padding: 10px 90px;
 }
