@@ -137,3 +137,13 @@ body {
 .player-count {
     color: #3AF31C;
 }
+
+.dot {
+    height: 6px;
+    width: 6px;
+    background-color: #3AF31C;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: 3px;
+}
