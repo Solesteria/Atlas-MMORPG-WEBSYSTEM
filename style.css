@@ -31,12 +31,12 @@ body {
 
 .logo {
     position: absolute;
-    left: 35%;
+    left: 32%;
     top: 0;
 }
 
 .logo img {
-    width: 500px;
+    width: 600px;
 }
 
 .box-container {
