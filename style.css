@@ -29,6 +29,16 @@ body {
     font-size: 10px;
 }
 
+.logo {
+    position: absolute;
+    left: 35%;
+    top: 0;
+}
+
+.logo img {
+    width: 500px;
+}
+
 .box-container {
     background-image: url("/images/BG.png");
     background-repeat: no-repeat;
@@ -114,7 +124,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: left;
-    padding: 20px;
+    padding: 16px;
     background-color: rgba(95, 76, 100, 0.5);
 }
 
