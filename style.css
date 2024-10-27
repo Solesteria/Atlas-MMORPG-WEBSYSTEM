@@ -159,17 +159,11 @@ body {
 }
 
 .main-content {
-    padding: 20px;
-    position: absolute;
-    left: 4%;
-    z-index: -1;
-}
-
-.main-content img {
-    width: 485%;
-    height: 250px;
-    border-radius: 5px;
-    filter: blur(5px);
+    background-image: linear-gradient(#cb79c2, #b76ab7, #a254a2);
+    width: 87.8%;
+    height: 200px;
+    margin: 15px 100px;
+    border-radius: 10px;
 }
 
 .update-form {
@@ -177,7 +171,7 @@ body {
     width: 900px;
     height: 550px;
     padding: 15px;
-    margin-top: 350px;
+    margin-top: 30px;
     margin-left: 35px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -201,17 +195,3 @@ body {
     height: 370px;
 }
 
-.sidebar {
-    background: linear-gradient(to bottom, #A05A99, #7A3375);
-    width: 200px;
-    height: 350px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-.shop-header img {
-    width: 100px;
-}
