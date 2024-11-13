@@ -58,7 +58,7 @@ input{
     border-radius: 5px;
 }
 
-button{
+.button{
     width: 60%;
     height: 40px;
     margin: 10px auto;
@@ -76,7 +76,7 @@ button{
     cursor: pointer;
 }
 
-button:hover{
+.button:hover{
     background: #3c2942;
 
 }
