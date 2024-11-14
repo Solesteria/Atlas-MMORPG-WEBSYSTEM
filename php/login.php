@@ -1,6 +1,11 @@
 <?php
     session_start();
-    include("php/database.php");
+    $conn = mysqli_connect("localhost", "root", "", "records");
+
+    if ($conn->connect_error)
+    {
+        die ("Connection Failed!: " . $conn->connect_error);
+    }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
