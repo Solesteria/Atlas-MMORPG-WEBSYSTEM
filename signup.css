@@ -57,7 +57,7 @@ input{
     border-radius: 5px;
 }
 
-.button{
+.btn{
     width: 60%;
     height: 40px;
     margin: 10px auto;
@@ -75,7 +75,7 @@ input{
     cursor: pointer;
 }
 
-.button:hover{
+.btn:hover{
     background: #3c2942;
 }
 
