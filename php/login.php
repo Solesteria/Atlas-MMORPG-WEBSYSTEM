@@ -18,7 +18,7 @@
         $email = mysqli_real_escape_string($conn, $_POST["email"]);
         $pswd = mysqli_real_escape_string($conn, $_POST["pswd"]);
 
-        $sql = "SELECT * FROM tb_user WHERE email = ?";
+        $sql = "SELECT pswd FROM tb_user WHERE email = ?";
 
         if ($stmt = $conn->prepare($sql))
         {
