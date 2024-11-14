@@ -6,6 +6,7 @@ body{
     align-items: center;
     min-height: 100vh;
     font-family: "Press Start 2P", system-ui;
+    /*background: linear-gradient(to bottom, #1b061c, #3c2942, #1b061c);*/
     background-image: url("images/BG.png");
     background-repeat: no-repeat;
     background-position: center;
@@ -27,7 +28,7 @@ body{
     display: none;
 }
 
-.signup{
+.login{
     position: relative;
     width: 100%;
     height: 100%;
@@ -38,7 +39,7 @@ label{
     font-size: 1.9em;
     justify-content: center;
     display: flex;
-    margin: 60px;
+    margin: 65.5px;
     font-weight: bold;
     cursor: pointer;
     transition: .5s ease-in-out;
@@ -57,7 +58,7 @@ input{
     border-radius: 5px;
 }
 
-.btn{
+.button{
     width: 60%;
     height: 40px;
     margin: 10px auto;
@@ -75,11 +76,12 @@ input{
     cursor: pointer;
 }
 
-.btn:hover{
+.button:hover{
     background: #3c2942;
+
 }
 
-.login{
+.signup{
     height: 460px;
     background-color: #eee;
     border-radius: 60% / 10%;
@@ -87,20 +89,20 @@ input{
     transition: .8s ease-in-out;
 }
 
-.login label{
+.signup label{
     color: #573b8a;
     transform: scale(.6);
 }
 
-#chk:checked ~ .login{
+#chk:checked ~ .signup{
     transform: translateY(-500px);
 }
 
-#chk:checked ~ .login label{
+#chk:checked ~ .signup label{
     transform: scale(1);
 }
 
-#chk:checked ~ .signup label{
+#chk:checked ~ .login label{
     transform: scale(.6);
 }
 
