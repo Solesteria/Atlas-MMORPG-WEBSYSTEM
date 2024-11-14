@@ -33,7 +33,7 @@
                         $_SESSION['loggedin'] = true;
                         $_SESSION['email'] == $row['email'];
 
-                        header ("Location: php/index.php");
+                        header ("Location: index.php");
                         exit();
                     }
 
