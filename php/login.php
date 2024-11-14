@@ -13,8 +13,8 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        $email = mysqli_real_escape_string($conn, $_POST["email"]);
-        $pswd = mysqli_real_escape_string($conn, $_POST["pswd"]);
+        $email = trim($_POST["email"]);
+        $pswd = trim($_POST["pswd"]);
 
         $sql = "SELECT * FROM tb_user WHERE email = ?";
 
@@ -33,7 +33,7 @@
                         $_SESSION['loggedin'] = true;
                         $_SESSION['email'] == $row['email'];
 
-                        header ("Location: index.php");
+                        header ("Location: php/index.php");
                         exit();
                     }
 
