@@ -33,12 +33,12 @@
 
             if ($stmt->execute())
             {
-                echo "Registration Successfully!";
+                echo "<script> alert('Registration Successfully!')</script>";
             }
 
             else
             {
-                echo "ERROR: All required fields must be filled";
+                echo "<script> alert('ERROR: All required fields must be filled')</script>";
             }
         }
 
