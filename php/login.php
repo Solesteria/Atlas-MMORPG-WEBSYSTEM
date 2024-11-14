@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -13,8 +15,8 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        $email = trim($_POST["email"]);
-        $pswd = trim($_POST["pswd"]);
+        $email = mysqli_real_escape_string($conn, $_POST["email"]);
+        $pswd = mysqli_real_escape_string($conn, $_POST["pswd"]);
 
         $sql = "SELECT * FROM tb_user WHERE email = ?";
 
@@ -31,7 +33,7 @@
                     if (password_verify($pswd, $row['pswd']))
                     {
                         $_SESSION['loggedin'] = true;
-                        $_SESSION['email'] == $row['email'];
+                        $_SESSION['email'] = $row['email'];
 
                         header ("Location: php/index.php");
                         exit();
