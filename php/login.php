@@ -1,10 +1,14 @@
 <?php
-    session_start();
-    $conn = mysqli_connect("localhost", "root", "", "records");
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $db_name = "records";
+
+    $conn = new mysqli($servername, $username, $password, $db_name);
 
     if ($conn->connect_error)
     {
-        die ("Connection Failed!: " . $conn->connect_error);
+        die ("Connection failed: " . $conn->connect_error);
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -12,31 +16,47 @@
         $email = mysqli_real_escape_string($conn, $_POST["email"]);
         $pswd = mysqli_real_escape_string($conn, $_POST["pswd"]);
 
-        if (!empty($email) && !empty($pswd))
+        $sql = "SELECT * FROM tb_user WHERE email = ?";
+
+        if ($stmt = $conn->prepare($sql))
         {
-            $query = "SELECT * FROM tb_user WHERE email = '$email' OR pswd = '$pswd'";
-            $result = mysqli_query($conn, $query);
+            $stmt->bind_param("s", $email);
 
-            if ($result)
+            if ($stmt->execute())
             {
-                if ($result && mysqli_num_rows($result) > 0)
-                {
-                    $user_data = mysqli_fetch_assoc($result);
+                $result = $stmt->get_result();
 
-                    if ($user_data['pswd'] == $pswd)
+                if ($row = $result->fetch_assoc())
+                {
+                    if (password_verify($pswd, $row['pswd']))
                     {
-                        header ("location: php/index.php");
-                        die;
+                        $_SESSION['loggedin'] = true;
+                        $_SESSION['email'] == $row['email'];
+
+                        header ("Location: php/database.php");
+                        exit();
                     }
+
+                    else
+                    {
+                        echo "<script> alert('Incorrect Password')</script>";
+                    }
+                }
+
+                else
+                {
+                    echo "<script> alert('Email not found')</script>";
                 }
             }
 
-            echo "<script> alert('Wrong username or password')</script>";
-        }
+            else
+            {
+                echo "<script> alert('Error executing query')</script>";
+            }
 
-        else
-        {
-            echo "<script> alert('Wrong username or password')</script>";
+            $stmt->close();
         }
     }
+
+    $conn->close();
 ?>
