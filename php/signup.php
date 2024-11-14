@@ -19,30 +19,32 @@
         $userName = mysqli_real_escape_string($conn, $_POST["userName"]);
         $email = mysqli_real_escape_string($conn, $_POST["email"]);
         $pswd = mysqli_real_escape_string($conn, $_POST["pswd"]);
+        $confirmation = mysqli_real_escape_string($conn, $_POST["confirmation"]);
 
         //Check if all fields are filled
-        if (!empty($userName) && !empty($email) && !empty($pswd))
+        if (!empty($userName) && !empty($email) && !empty($pswd) && !empty($confirmation))
         {
-            $sql = "INSERT INTO tb_user (userName, email, pswd) VALUES (?, ?, ?)";
+            $sql = "INSERT INTO tb_user (userName, email, pswd, confirmation) VALUES (?, ?, ?, ?)";
 
-            //Prepare statement
-            $stmt = $conn->prepare($sql);
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, "ssss", $userName, $email, $pswd, $confirmation);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
 
-            //Bind parameters
-            $stmt->bind_param("sss", $userName, $email, $pswd);
-
-            if ($stmt->execute())
-            {
-                echo "<script> alert('Registration Successfully!')</script>";
-            }
-
-            else
-            {
-                echo "<script> alert('ERROR: All required fields must be filled')</script>";
-            }
+            echo "User registered successfully!";
         }
 
-        //connection close
-        $conn->close();
+        else
+        {
+            echo "Please fill all required fields.";
+        }
     }
+
+    else
+    {
+        echo "Not a POST request";
+    }
+
+    //connection close
+    $conn->close();
 ?>

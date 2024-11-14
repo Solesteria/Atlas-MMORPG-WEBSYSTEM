@@ -18,46 +18,36 @@
         $email = mysqli_real_escape_string($conn, $_POST["email"]);
         $pswd = mysqli_real_escape_string($conn, $_POST["pswd"]);
 
-        $sql = "SELECT pswd FROM tb_user WHERE email = ?";
+        $sql = "SELECT * FROM tb_user WHERE email = '$email' && pswd = '$pswd' ";
 
-        if ($stmt = $conn->prepare($sql))
+        $result = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($result) > 0)
         {
-            $stmt->bind_param("s", $email);
+            $error[] = "user already exist!"; 
+        }
 
-            if ($stmt->execute())
+        else
+        {
+            if ($pswd != $pswd)
             {
-                $result = $stmt->get_result();
-
-                if ($row = $result->fetch_assoc())
-                {
-                    if (password_verify($pswd, $row['pswd']))
-                    {
-                        $_SESSION['loggedin'] = true;
-                        $_SESSION['email'] = $row['email'];
-
-                        header ("Location: php/index.php");
-                        exit();
-                    }
-
-                    else
-                    {
-                        echo "<script> alert('Incorrect Password')</script>";
-                    }
-                }
-
-                else
-                {
-                    echo "<script> alert('Email not found')</script>";
-                }
+                $error[] = "password not matched!"; 
             }
 
             else
             {
-                echo "<script> alert('Error executing query')</script>";
+                
             }
-
-            $stmt->close();
         }
+
+        if (isset($error))
+        {
+            foreach ($error as $error)
+            {
+                echo '<span class="error-msg">'.$error.'</span>';
+            }
+        }
+        
     }
 
     $conn->close();
