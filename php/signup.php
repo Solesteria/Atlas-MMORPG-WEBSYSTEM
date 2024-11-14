@@ -33,7 +33,7 @@
 
             if ($stmt->execute())
             {
-                echo "Record inserted successfully!";
+                echo "Registration Successfully!";
             }
 
             else
