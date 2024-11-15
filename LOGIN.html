@@ -22,8 +22,12 @@
             <div class="login">
                 <form action="php/login.php" method="post">
                     <label for="chk" aria-hidden="true">Log In</label>
-                    <input type="email" name="email" placeholder="Email" required="">
+                    <input type="email" class="email" name="email" placeholder="Email" required="">
                     <input type="password" name="pswd" placeholder="Password" required="">
+                    <select name="user_input" class="user_input" id="user_input">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
                     <input type="submit" class="button" name="login" value="Log In">
                 </form>
             </div>
@@ -35,6 +39,10 @@
                     <input type="email" name="email" placeholder="Email" required="">
                     <input type="password" name="pswd" placeholder="Password" required="">
                     <input type="password" name="confirmation" placeholder="Confirm Password" required="">
+                    <select name="user_input" class="user_input" id="user_input">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
                     <input type="submit" class="button" name="signup" value="Sign Up">
                 </form>
             </div>
