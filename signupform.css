@@ -131,3 +131,41 @@ input {
     outline: none;
     border-radius: 5px;
 }
+
+.error-login {
+    position: absolute;
+    margin: 40px 0;
+    margin-left: 10px;
+    background: crimson;
+    color:#fff;
+    border-radius: 5px;
+    font-size: 10px;
+    padding: 10px;
+    text-align: center; 
+    transition: opacity 0.8s ease-in-out;
+    opacity: 1;
+}
+
+.error-login.fade-out {
+    opacity: 0; /* Invisible after animation */
+    transition: opacity 0.8s ease-in-out;
+}
+
+.error-signup {
+    position: absolute;
+    margin: 40px 0;
+    margin-left: 70px;
+    background: crimson;
+    color:#fff;
+    border-radius: 5px;
+    font-size: 10px;
+    padding: 10px;
+    text-align: center; 
+    transition: opacity 0.8s ease-in-out;
+    opacity: 1;
+}
+
+.error-signup.fade-out {
+    opacity: 0; /* Invisible after animation */
+    transition: opacity 0.8s ease-in-out;
+}
