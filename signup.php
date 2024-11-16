@@ -16,21 +16,21 @@
 
         if (mysqli_num_rows($result) > 0)
         {
-            $error[] = 'User already exist';
+            $signup_error[] = 'User already exist';
         }
 
         else
         {
             if ($password != $confirmation)
             {
-                $error[] = 'Password did not matched!';
+                $signup_error[] = 'Password did not matched!';
             }
 
             else
             {
                 $insert = "INSERT INTO tb_user (userName, email, password, user_type) VALUES ('$userName', '$email', '$password', '$user_type')";
                 mysqli_query($conn, $insert);
-                $success[] = 'Registered successful!';
+                $signup_success[] = 'Registered successful!';
             }
         }
     }
@@ -64,7 +64,7 @@
 
         else
         {
-            $error[] = 'Email is incorrect!';
+            $login_error[] = 'Email or password is incorrect!';
         }
     }
 ?>
@@ -89,19 +89,22 @@
 
     <div class="main">
             <input type="checkbox" id="chk" aria-hidden="true">
-
             <div class="login">
                 <form action="" method="post">
                     <?php
-                        if (isset($error)) {
-                            foreach ($error as $message) {
-                            echo '<span class="error-message">'.$message.'</span>';               
+                        if (isset($signup_error)) 
+                        {
+                            foreach ($signup_error as $message) 
+                            {
+                                echo '<span class="error-signup">'.$message.'</span>';               
                             }
                         }
 
-                        if (isset($success)) {
-                            foreach($success as $message) {
-                            echo '<span class="success-message">'.$message.'</span>';
+                        if (isset($signup_success)) 
+                        {
+                            foreach($signup_success as $message) 
+                            {
+                                echo '<span class="success-signup">'.$message.'</span>';
                             }
                         }
                     ?>
@@ -121,9 +124,11 @@
             <div class="signup">
                 <form action="" method="post">
                     <?php
-                        if (isset($error)) {
-                            foreach ($error as $message) {
-                                echo '<span class="error-message">'.$message.'</span>';
+                        if (isset($login_error)) 
+                        {
+                            foreach ($login_error as $message) 
+                            {
+                                echo '<span class="error-login">'.$message.'</span>';
                             }
                         }  
                     ?>
@@ -139,5 +144,30 @@
             </div>
     </div>
     
+    <script>
+        document.addEventListener('DOMContentLoaded', function() 
+        {
+            const errorMessages = document.querySelectorAll('.error-login');
+            errorMessages.forEach((message) => 
+            {
+                setTimeout(() => 
+                {
+                    message.classList.add('fade-out');
+                }, 1000); // 1 second before fading out
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() 
+        {
+            const errorMessages = document.querySelectorAll('.error-signup');
+            errorMessages.forEach((message) => 
+            {
+                setTimeout(() => 
+                {
+                    message.classList.add('fade-out');
+                }, 1000); // 1 second before fading out
+            });
+        });
+    </script>
 </body>
 </html>
