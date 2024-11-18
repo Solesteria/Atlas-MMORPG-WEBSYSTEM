@@ -132,40 +132,39 @@ input {
     border-radius: 5px;
 }
 
-.error-login {
-    position: absolute;
-    margin: 10px 0;
-    margin-left: 10px;
-    background: crimson;
-    color:#fff;
-    border-radius: 5px;
-    font-size: 10px;
-    padding: 10px;
-    text-align: center; 
-    transition: opacity 0.8s ease-in-out;
-    opacity: 1;
+/* Style for alert messages */
+.alert {
+    position: fixed; /* Keeps the alert fixed at the top */
+    top: 0; /* Position it at the top */
+    left: 50%; /* Center align the alert horizontally */
+    transform: translateX(-50%); /* Center the alert */
+    width: 90%; /* Adjust the width, optional */
+    max-width: 600px; /* Limit the width */
+    padding: 15px; /* Add padding for better spacing */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    font-family: 'Press Start 2P', sans-serif; /* Keep font consistent */
+    z-index: 1000; /* Make sure it's above other elements */
+    text-align: center; /* Center text alignment */
 }
 
-.error-login.fade-out {
-    opacity: 0; /* Invisible after animation */
-    transition: opacity 0.8s ease-in-out;
+/* Success message style */
+.alert-success {
+    background-color: #d4edda; /* Light green background */
+    color: #155724; /* Dark green text */
+    border: 1px solid #c3e6cb; /* Matching border color */
 }
 
-.error-signup {
-    position: absolute;
-    margin: 30px 0;
-    margin-left: 70px;
-    background: crimson;
-    color:#fff;
-    border-radius: 5px;
-    font-size: 10px;
-    padding: 10px;
-    text-align: center; 
-    transition: opacity 0.8s ease-in-out;
-    opacity: 1;
+/* Fade-out animation */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 
-.error-signup.fade-out {
-    opacity: 0; /* Invisible after animation */
-    transition: opacity 0.8s ease-in-out;
+.fade-out {
+    animation: fadeOut 2s ease-in forwards; /* Fades out in 2 seconds */
 }
