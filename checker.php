@@ -94,13 +94,13 @@
             if ($row['user_type'] == 'admin')
             {
                 $_SESSION['admin_name'] = $row['userName'];
-                header('location:admin_page.php');
+                header('location:admin/admin_page.php');
             }
 
             else if ($row['user_type'] == 'user')
             {
                 $_SESSION['user_name'] = $row['userName'];
-                header('location:user_page.php');
+                header('location:user/user.php');
             }
         }
 
