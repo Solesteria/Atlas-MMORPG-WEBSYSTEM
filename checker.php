@@ -119,7 +119,7 @@
             else if ($row['user_type'] == 'user')
             {
                 $_SESSION['user_name'] = $row['userName'];
-                header('location:user/user.php');
+                header('location:user/user_page.php');
             }
         }
 
