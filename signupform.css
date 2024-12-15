@@ -168,3 +168,48 @@ input {
 .fade-out {
     animation: fadeOut 2s ease-in forwards; /* Fades out in 2 seconds */
 }
+
+.eye-pass {
+    position: absolute;
+    top: 41.5%;
+    right: 60px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    padding: 5px;
+    border: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #A9A9A9;
+}
+
+.eye-confirm {
+    position: absolute;
+    top: 52%;
+    right: 60px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    padding: 5px;
+    border: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #A9A9A9;
+}
+
+.eye-password {
+    position: absolute;
+    top: 38.5%;
+    right: 60px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    padding: 5px;
+    border: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #A9A9A9;
+}

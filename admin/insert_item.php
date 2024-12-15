@@ -29,9 +29,17 @@
             <a href="transaction.php" class="action-btn">Transactions</a>
             <a href="logs.php" class="action-btn">View Logs</a>
             <a href="insert_item.php" class="action-btn">Add Item</a>
-            <a href="../logout.php" class="logout-link">Logout</a>
+            <a href="logout.php" class="logout-link">Logout</a>
          </div>
       </nav>
    </header>
+
+   <div class="container">
+      <!-- Admin Actions Section -->
+      <div class="admin-actions">
+         <!-- Your content goes here -->
+      </div>
+   </div>
+
 </body>
 </html>

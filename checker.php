@@ -47,9 +47,9 @@
         $user_type = $_POST['user_type'];
         $verify_token = md5(rand());
 
-        // Password Validation
-        if (!isValidPassword($password)) {
-            $_SESSION['signup_status'] = "Password must be at least 8 characters long and include one uppercase letter, one lowercase letter, one number, and one special character.";
+        // Password Validation: Minimum length 8 characters
+        if (strlen($password) < 8) {
+            $_SESSION['signup_status'] = "Password must be at least 8 characters long.";
             header("Location: signup.php");
             exit;
         }
