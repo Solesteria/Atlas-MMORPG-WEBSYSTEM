@@ -8,6 +8,8 @@
 
     session_start();
     @include 'php/db_connection.php';
+    include 'php/password_functions.php';
+
 
     function sendemail_verify($userName, $email, $verify_token)
     {
@@ -44,6 +46,23 @@
         $confirmation = md5($_POST['confirmation']);
         $user_type = $_POST['user_type'];
         $verify_token = md5(rand());
+
+        // Password Validation
+        if (!isValidPassword($password)) {
+            $_SESSION['signup_status'] = "Password must be at least 8 characters long and include one uppercase letter, one lowercase letter, one number, and one special character.";
+            header("Location: signup.php");
+            exit;
+        }
+
+        // Check if passwords match
+        if ($password !== $confirmation) {
+            $_SESSION['signup_status'] = "Passwords do not match!";
+            header("Location: signup.php");
+            exit;
+        }
+
+        // Hash the password after validation
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Email exists or not
         $check_email_query = "SELECT email FROM tb_user WHERE email='$email' LIMIT 1";
