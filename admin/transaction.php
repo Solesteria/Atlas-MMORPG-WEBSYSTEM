@@ -53,10 +53,10 @@ if (isset($_POST['add_transaction'])) {
          </div>
 
          <div class="nav-links">
-            <a href="transaction.php" class="action-btn">Transactions</a>
+            <a href="transaction.php" class="action-btn" id="transactionLink">Transactions</a>
             <a href="logs.php" class="action-btn">View Logs</a>
             <a href="insert_item.php" class="action-btn">Add Item</a>
-            <a href="logout.php" class="logout-link">Logout</a>
+            <a href="../logout.php" class="logout-link">Logout</a>
          </div>
       </nav>
    </header>
@@ -115,6 +115,26 @@ if (isset($_POST['add_transaction'])) {
          </table>
       </div>
    </div>
+   
+   <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const transactionLink = document.getElementById("transactionLink");
 
+        // Check if this link was previously clicked and apply the saved background color
+        const isClicked = localStorage.getItem("transactionLinkClicked");
+        if (isClicked === "true") {
+            transactionLink.style.backgroundColor = "#4B293F";
+        }
+
+        // When the link is clicked
+        transactionLink.addEventListener("click", (event) => {
+            // Save the clicked state to localStorage
+            localStorage.setItem("transactionLinkClicked", "true");
+
+            // Apply the background color
+            transactionLink.style.backgroundColor = "#4B293F";
+        });
+    });
+</script>
 </body>
 </html>

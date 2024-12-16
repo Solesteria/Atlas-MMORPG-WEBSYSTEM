@@ -48,14 +48,14 @@
             <div class="login">
                 <form action="checker.php" method="post">
                     <label for="chk" aria-hidden="true">Sign Up</label>
-                    <input type="text" name="userName" placeholder="User Name" required="">
-                    <input type="email" name="email" placeholder="Email" required="">
-                    <input type="password" name="password" placeholder="Password" id="showPass" required="">
+                    <input type="text" name="userName" placeholder="User Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" id="showPass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                     <div class="eye-pass">
                         <i class="fas fa-eye" id="togglePassword" onclick="showPass()" style="cursor: pointer;"></i>
                     </div>
                     
-                    <input type="password" name="confirmation" placeholder="Confirm Password" id="showConfirm" required="">
+                    <input type="password" name="confirmation" placeholder="Confirm Password" id="showConfirm" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                     <div class="eye-confirm">
                         <i class="fas fa-eye" id="toggleConfirm" onclick="showConfirm()" style="cursor: pointer;"></i>
                     </div>
@@ -66,6 +66,8 @@
                     </select>
                     <input type="submit" class="button" name="signup" value="Sign Up">
                 </form>
+
+                <input type="submit" class="button" value="Return" onclick="window.location.href='index.html'; return false;">
             </div>
 
             <div class="signup">
@@ -83,6 +85,8 @@
                     </select>
                     <input type="submit" class="button" name="login" value="Log In">
                 </form>
+
+                <input type="submit" class="button" value="Return" onclick="window.location.href='index.html'; return false;">
             </div>
     </div>
     

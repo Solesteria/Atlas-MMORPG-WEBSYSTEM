@@ -61,6 +61,7 @@ input {
 }
 
 .button{
+    text-align: center;
     width: 60%;
     height: 40px;
     margin: 10px auto;
@@ -70,7 +71,7 @@ input {
     background: #492967;
     font-size: 1em;
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 10px;
     outline: none;
     border: none;
     border-radius: 5px;
@@ -83,12 +84,20 @@ input {
 
 }
 
+.button a {
+    color: #fff;
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
+}
+
 .signup{
     height: 550px;
     background-color: #eee;
     border-radius: 60% / 10%;
     transform: translateY(-180px);
     transition: .8s ease-in-out;
+    margin-top: 80px;
 }
 
 .signup label{
