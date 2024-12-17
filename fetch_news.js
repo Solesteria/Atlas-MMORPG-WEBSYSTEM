@@ -20,15 +20,27 @@ async function fetchNews() {
             div.className = 'content-box';
 
             div.innerHTML = `
-                <div class="header-update"><h1>${item.title}</h1></div>
-                    <div class="content-top">
-                        <div class="news-date">Date: ${item.date}</div>
-                        <div class="news-author">Author: ${item.author}</div>
-                    </div>
-                <div class="content">${item.content}
-                    <img src="${item.image}" alt="News Image" class="news-image">
+                <div class="header-update">
+                    ${item.news_type}
                 </div>
-                <a href="${item.link}" target="_blank">Learn More</a>
+                    <div class="author-container">
+                        <img src="${item.avatar}" alt="Author Avatar" class="author-avatar">
+                    </div>
+                    <div>
+                        <span class="author-name">${item.author}</span>
+                    </div>
+                    <div class="content">
+                        <div class="date-class">${item.date}</div>
+                        <div class ="title-class">${item.title}</div>
+                        <div class ="subtitle-class">${item.subtitle}</div>
+                        <div class ="content-class">${item.content}</div>
+                        <div class="image-container">
+                            <img src="${item.image}" alt="#">
+                        </div>
+                    </div>
+                        
+                    
+            
             `;
 
             newsFeed.appendChild(div);
@@ -36,7 +48,7 @@ async function fetchNews() {
 
         // Disable the button if all items are loaded
         if (currentIndex >= newsData.length) {
-            const button = document.querySelector('button');
+            const button = document.querySelector('button:not(.btn-search)');
             button.disabled = true;
             button.textContent = 'No More News';
         }

@@ -4,6 +4,13 @@
     box-sizing: border-box;
 }
 
+#newsFeed {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 16px; /* Add spacing between items */
+    padding: 16px; /* Optional: Add padding around the feed */
+}
+
 body {
     font-family: "Press Start";
     background-color: #18051D;
@@ -197,7 +204,7 @@ body {
 .content-box {
     background-image: linear-gradient(#866D99, #605779, #583E52);
     width: 900px;
-    height: 550px;
+    height: fit-content;
     padding: 15px;
     margin-top: 30px;
     margin-left: 60px;
@@ -205,9 +212,25 @@ body {
 }
 
 .header-update {
-    background-image: linear-gradient(#B15CB2, #532849);
-    height: 60px;
-    border-radius: 8px;
+    width: 100%;
+    height: 60px; /* Fixed height to remove extra space */
+    display: flex; /* Use Flexbox for centering */
+    justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
+    background: linear-gradient(to bottom, #c153a1, #713a7d); /* Gradient background */
+    color: #fff; /* White text color */
+    font-size: 2em; /* Adjust font size */
+    font-weight: bold;
+    border-radius: 10px; /* Rounded corners */
+    margin: 0; /* Remove extra space outside */
+    margin-bottom: 10px;
+}
+
+.header-title{
+    margin-bottom: 5px;
+    margin-top: 5px;
+    display: flex; 
+    align-items: center;
 }
 
 .content-top {
@@ -217,9 +240,13 @@ body {
 }
 
 .content {
-    background-color: #d9d9d9;
-    margin-top: 10px;
-    height: 370px;
+    background-image: linear-gradient(#ac9bb9a4, #9f99ad46, #a0929d3d);
+    display: block;
+    margin-left: 15%;
+    margin-right: 30px;
+    height: fit-content;
+    margin-top: -130px;
+    border-radius: 10px;
 }
 
 .sidebar {
@@ -242,6 +269,116 @@ body {
 }
 .news-date,
 .news-author {
-    color: #888;
-    font-size: 0.9em;
+    color: #6b1f8a;
+    display: flex;
+    font-size: 1.5em;
+    justify-content: space-between;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.avatar-box{
+    border-radius: 5px;
+    width: 64px;
+    height: 64px;
+}
+.news-image{
+    justify-content: space-between;
+    width: 400px;
+    height: 500px;
+}
+.image-div{
+    justify-content: center;
+}
+
+    /* Author section */
+    .author-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        padding-left: 20px;
+        gap: 10px;
+    }
+
+    .author-avatar {
+        width: 96px;
+        height: 96px;
+        border-radius: 5%; /* Makes the avatar circular */
+    }
+
+    .author-name {
+        text-align: center;
+        font-size: 1.3em;
+        color: #ffffff;
+        padding: 38px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    /* Image container */
+    .image-container {
+        width: 100%; /* Full width */
+        overflow: hidden; /* Prevents stretching beyond bounds */
+        align-items: center;    
+    }
+
+    .image-container img {
+        max-width: fit-content; /* Stretch to container */
+        max-height: fit-content; /* Maintain aspect ratio */
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    /* Description Text */
+    .update-description {
+        margin-bottom: 10px;
+        line-height: 1.6;
+        color: #444;
+    }
+
+    /* Learn More link */
+    .learn-more {
+        display: inline-block;
+        margin-top: 10px;
+        color: #c11b1b;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .learn-more:hover {
+        text-decoration: underline;
+    }
+    .date-class{
+        font-size: 0.6em;
+        margin-left: 10px;
+        padding-top: 10px;
+    }
+    .title-class{
+        font-size: 1.4em;
+        padding-left: 12px;
+        margin-top: 5px;
+        display: flex;
+        color: rgb(43, 42, 42);
+        font-weight: bold;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .subtitle-class{
+        font-size: 1em;
+        padding-left: 10px;
+        margin-top: 5px;
+        display: flex;
+        color: rgb(255, 209, 122);
+        font-weight: bold;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .content-class{
+        padding-left: 10px;
+        display:block;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+.discord-css{
+    position: absolute;
+    display: flex;
+    margin-left: 1000px;
+    margin-top: 45px;
 }
