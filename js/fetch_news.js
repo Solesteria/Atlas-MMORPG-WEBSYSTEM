@@ -6,7 +6,7 @@ async function fetchNews() {
     try {
         // Load the news data only once
         if (newsData.length === 0) {
-            const response = await fetch('fetch_news.php');
+            const response = await fetch('../fetch_news.php');
             newsData = await response.json();
         }
 

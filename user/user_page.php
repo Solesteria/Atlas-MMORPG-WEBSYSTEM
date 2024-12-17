@@ -12,91 +12,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="user.css">
-   <title>user page</title>
-
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATLAS MMORPG</title>
+    <link rel="stylesheet" href="user.css">
 </head>
 <body>
-   <header class="header-nav">
-      <nav class="navbar">
-         <div class="logo">
-            <img src="../images/ATLAS-LOGO.png" alt="ATLAS Logo">
-         </div>
+      <div class="container">
+        <header>
+            <div class="login-register">
+                <ul>
+                    <li><a class="login" href="login.php">LOG IN</a></li>
+                    <li><a class="signup" href="signup.php">SIGN UP</a></li>
+                </ul>
+            </div>
 
-         <div class="nav-links">
-            <a href="../logout.php" class="logout-link">Logout</a>
-         </div>
-      </nav>
-   </header>
+            <div class="box-container">
+                <div class="navigation-bar">
+                    <ul>
+                        <li><a href="../index.html">HOME</a></li>
+                        <li><a href="../about.html">ABOUT</a></li>
+                        <li><a href="../addtocart.html">STORE</a></li>
+                    </ul>
+                </div>
 
-   <div class="main-content">
-      <!-- Buy and Sell Section -->
+                <div class="logo">
+                    <img src="../images/ATLAS-LOGO.png" alt="ATLAS Logo">
+                </div>
 
-      <br>
-      <br>
-      <br>
+                <div class="bbx-container">
+                    <div class="welcome-msg">
+                        <h1>WELCOME TO ATLAS!</h1>
+                    </div>
+    
+                    <form action="" class="search-bar">
+                        <input type="text" placeholder="FIND ITEM">
 
-      <br>
-      <br>
-      <br>
-      <br>
+                        <button class="btn-search">
+                            <img src="../images/search-icon.png" alt="Search Icon">
+                        </button>
+                    </form>
+                </div>
+    
+            </div>
+        </header>
 
-      <br>
-      <br>
-      <br>
-      <br>
+        <div class="main-content">
+            <div class="button-buy">
+                <a href="#"><img src="../images/buy.png" width="350px"></a>
+            </div>
+            <div class="button-sell">
+               <button onclick=""><img src="../images/sell.png" width="350px"></button>
+            </div>
+        </div>
+        <iframe src="https://discord.com/widget?id=1312823529284046848&theme=dark" width="450" height="550" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" class="discord-css"></iframe>
 
-      <br>
-         <div class="buy-sell-section">
-            <h2>Marketplace</h2>
-               <div class="button-group">
-                    <button id="buy-btn" onclick="showDropdown('buy')">Buy</button>
-                    <button id="sell-btn" onclick="showDropdown('sell')">Sell</button>
-               </div>
-
-
-                
-               <!-- Buy Dropdown -->
-               <div id="buy-dropdown" class="dropdown hidden">
-                  <label for="buy-options">What do you want to buy?</label>
-                  <select id="buy-options">
-                     <option value="" disabled selected>Select an option</option>
-                     <optgroup label="Equipment">
-                           <option value="weapons">Weapons</option>
-                           <option value="armor">Armor</option>
-                     </optgroup>
-                     <optgroup label="Consumables">
-                           <option value="potions">Potions</option>
-                           <option value="scrolls">Scrolls</option>
-                     </optgroup>
-                  </select>
-               </div>
-
-               <!-- Sell Dropdown -->
-               <div id="sell-dropdown" class="dropdown hidden">
-                  <label for="sell-options">What do you want to sell?</label>
-                  <select id="sell-options">
-                     <option value="" disabled selected>Select an option</option>
-                     <optgroup label="Loot">
-                           <option value="gems">Gems</option>
-                           <option value="materials">Crafting Materials</option>
-                     </optgroup>
-                     <optgroup label="Miscellaneous">
-                           <option value="cosmetics">Cosmetics</option>
-                           <option value="mounts">Mounts</option>
-                     </optgroup>
-                  </select>
-               </div>
-         </div>
-   </div>
-
-   <script src="../fetch_news.js"></script>
-   <script src="user.js"></script>
+            <div>
+                <div class="update-form" id="newsFeed">
+                    <!-- News items will be added here dynamically -->
+                     
+                </div>
+            </div>
+        </div>
+      </div>
+   <script src="../js/fetch_news.js"></script>
 </body>
 </html>
