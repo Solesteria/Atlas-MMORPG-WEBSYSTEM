@@ -29,8 +29,22 @@ if (!$marketplaceItems) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marketplace Table</title>
+    <link rel="stylesheet" href="store.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
+<div style="text-align: left; margin: 10px;">
+        <button onclick="history.back()" style="
+            background-color: #ffcc00;
+            color: #000;
+            font-size: 14px;
+            border: 2px solid #000;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            box-shadow: 3px 3px 0px #000;
+        ">⬅ Back</button>
+    </div>
     <h1>Marketplace Table</h1>
     <table border="1">
         <thead>

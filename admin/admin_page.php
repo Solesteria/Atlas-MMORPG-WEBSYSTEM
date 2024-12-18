@@ -1,5 +1,5 @@
 <?php
-    @include 'php/db_connection.php';
+    @include '../php/db_connection.php';
 
     session_start();
 
@@ -27,7 +27,7 @@
 
          <div class="nav-links">
             <a href="transaction.php" class="action-btn">Transactions</a>
-            <a href="logs.php" class="action-btn">View Logs</a>
+            <a href="add_news.php" class="action-btn">News</a>
             <a href="insert_item.php" class="action-btn">Add Item</a>
             <a href="../logout.php" class="logout-link">Logout</a>
          </div>

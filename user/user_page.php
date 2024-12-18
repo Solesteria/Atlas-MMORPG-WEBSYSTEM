@@ -31,7 +31,7 @@
                     <ul>
                         <li><a href="../index.html">HOME</a></li>
                         <li><a href="../about.html">ABOUT</a></li>
-                        <li><a href="../addtocart.html">STORE</a></li>
+                        <li><a href="store.php">STORE</a></li>
                     </ul>
                 </div>
 

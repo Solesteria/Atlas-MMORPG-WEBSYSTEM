@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Fetch the user's inventory
-$stmt = $pdo->prepare("SELECT inventory.quantity, items.name, items.id FROM inventory JOIN items ON inventory.item_id = items.id WHERE inventory.user_id = ?");
+$stmt = $pdo->prepare("SELECT inventory.quantity, items.name, items.image, items.id FROM inventory JOIN items ON inventory.item_id = items.id WHERE inventory.user_id = ?");
 $stmt->execute([$userId]);
 $inventoryItems = $stmt->fetchAll();
 ?>
@@ -78,9 +78,26 @@ $inventoryItems = $stmt->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Inventory</title>
+    <link rel="stylesheet" href="inventory.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+25&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Press+Start+2P&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
+
+    
+    <div style="text-align: left; margin: 10px;">
+        <button onclick="history.back()" style="
+            background-color: #ffcc00;
+            color: #000;
+            font-size: 14px;
+            border: 2px solid #000;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            box-shadow: 3px 3px 0px #000;
+        ">⬅ Back</button>
+    </div>
 
     <h2>Your Inventory</h2>
     <table>
@@ -93,23 +110,52 @@ $inventoryItems = $stmt->fetchAll();
         <tbody>
             <?php foreach ($inventoryItems as $item): ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($item['name']); ?></td>
+                    <td>
+                        <img src="<?php echo htmlspecialchars($item['image']); ?>" width="50px" alt="<?php echo htmlspecialchars($item['name']); ?>">
+                        <br><br>
+                        <?php echo htmlspecialchars($item['name']); ?>
+                    </td>
                     <td><?php echo htmlspecialchars($item['quantity']); ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 
+    <br>
+
     <h2>Sell Item in Marketplace</h2>
+
+    <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+    <div style="position:relative; left:38%;">
+        <h1>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
+    </div>
+
+    
+       
+        <br>
+        <br>
+        <br>
+        <br>
     <form action="" method="POST">
         <label for="item_name">Select Item:</label>
+
+    
         <select name="item_name" id="item_name" required>
+
+        
             <?php foreach ($inventoryItems as $item): ?>
                 <option value="<?php echo htmlspecialchars($item['name']); ?>">
                     <?php echo htmlspecialchars($item['name'] . " (Quantity: " . $item['quantity'] . ")"); ?>
                 </option>
             <?php endforeach; ?>
         </select>
+
+        
 
         <label for="quantity">Quantity:</label>
         <input type="number" name="quantity" id="quantity" min="1" required>
@@ -119,7 +165,5 @@ $inventoryItems = $stmt->fetchAll();
 
         <button type="submit" name="sell_item_marketplace">List for Sale</button>
     </form>
-
-    <a href="store.php">Store</a>
 </body>
 </html>

@@ -1,140 +1,173 @@
 <?php
 session_start();
-@include '../php/db_connection.php';
+include '../php/db.php';
 
-if (!isset($_SESSION['admin_name'])) {
-    header('location:login.php');
-    exit;
+// Check if the user is logged in
+if (!isset($_SESSION['user_id'])) {
+    die("You must log in to access this page.");
 }
 
-// Fetch transaction data
-$query = "SELECT * FROM transactions ORDER BY transaction_date DESC";
-$query_run = mysqli_query($conn, $query);
+$userId = $_SESSION['user_id'];
 
-// Check for any errors in the query
-if (!$query_run) {
-    die("Error fetching transactions: " . mysqli_error($conn));
-}
+// Handle item purchase
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['buy_item'])) {
+    $itemId = intval($_POST['item_id']);
+    $quantity = intval($_POST['quantity']);
 
-// Add a new transaction (optional)
-if (isset($_POST['add_transaction'])) {
-    $item_id = mysqli_real_escape_string($conn, $_POST['item_id']);
-    $quantity = mysqli_real_escape_string($conn, $_POST['quantity']);
-    $total = mysqli_real_escape_string($conn, $_POST['total']);
-    $transaction_date = date('Y-m-d H:i:s');
+    // Fetch item details
+    $stmt = $pdo->prepare("SELECT price, name FROM items WHERE id = ?");
+    $stmt->execute([$itemId]);
+    $item = $stmt->fetch();
 
-    // Insert transaction into the database
-    $insert_query = "INSERT INTO transactions (item_id, quantity, total, transaction_date) 
-                     VALUES ('$item_id', '$quantity', '$total', '$transaction_date')";
-    if (mysqli_query($conn, $insert_query)) {
-        $_SESSION['status'] = "Transaction added successfully!";
-        header("Location: transaction.php");
-        exit;
+    if ($item) {
+        $totalPrice = $item['price'] * $quantity;
+
+        // Insert into transaction_logs
+        $stmt = $pdo->prepare("
+            INSERT INTO transaction_logs (buyer_id, seller_id, item_id, quantity, total_price, transaction_date) 
+            VALUES (?, ?, ?, ?, ?, NOW())
+        ");
+        if ($stmt->execute([$userId, null, $itemId, $quantity, $totalPrice])) {
+            $success = "Transaction successful for item '{$item['name']}'!";
+        } else {
+            $error = "Transaction failed: " . htmlspecialchars($stmt->errorInfo()[2]);
+        }
     } else {
-        $_SESSION['status'] = "Error adding transaction: " . mysqli_error($conn);
+        $error = "Item not found.";
     }
 }
+
+// Fetch all items available for purchase
+$stmt = $pdo->query("SELECT * FROM items");
+$items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Fetch all transactions for the user
+$stmt = $pdo->prepare("
+    SELECT 
+        tl.id AS transaction_id, 
+        i.name AS item_name, 
+        tl.quantity, 
+        tl.total_price, 
+        tl.transaction_date
+    FROM 
+        transaction_logs tl
+    JOIN 
+        items i ON tl.item_id = i.id
+    WHERE 
+        tl.buyer_id = ?
+    ORDER BY 
+        tl.transaction_date DESC
+");
+$stmt->execute([$userId]);
+$transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="transaction.css">
-   <title>Transaction Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Transactions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        .form-container {
+            margin-top: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 400px;
+        }
+        select, input, button {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 <body>
-   <header class="header-nav">
-      <nav class="navbar">
-         <div class="logo">
-            <img src="../images/ATLAS-LOGO.png" alt="ATLAS Logo">
-         </div>
+    <h1>User Transactions</h1>
 
-         <div class="nav-links">
-            <a href="transaction.php" class="action-btn" id="transactionLink">Transactions</a>
-            <a href="logs.php" class="action-btn">View Logs</a>
-            <a href="insert_item.php" class="action-btn">Add Item</a>
-            <a href="../logout.php" class="logout-link">Logout</a>
-         </div>
-      </nav>
-   </header>
+    <?php if (isset($success)): ?>
+        <div class="message success"><?= htmlspecialchars($success) ?></div>
+    <?php endif; ?>
+    <?php if (isset($error)): ?>
+        <div class="message error"><?= htmlspecialchars($error) ?></div>
+    <?php endif; ?>
 
-   <div class="container">
-      <!-- Admin Actions Section -->
-      <div class="admin-actions">
-         <h2>Transactions</h2>
-
-         <!-- Display status messages -->
-         <?php if (isset($_SESSION['status'])): ?>
-            <div class="status-message">
-                <?= $_SESSION['status']; ?>
-            </div>
-            <?php unset($_SESSION['status']); ?>
-         <?php endif; ?>
-
-         <!-- Add Transaction Form -->
-         <h3>Add Transaction</h3>
-         <form action="transaction.php" method="POST">
-            <label for="item_id">Item ID:</label>
-            <input type="text" id="item_id" name="item_id" required><br>
-
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" required><br>
-
-            <label for="total">Total:</label>
-            <input type="number" id="total" name="total" required><br>
-
-            <button type="submit" name="add_transaction">Add Transaction</button>
-         </form>
-
-         <!-- Display Transactions -->
-         <h3>Transaction List</h3>
-         <table border="1">
+    <!-- Transaction Logs -->
+    <div>
+        <h2>Transaction Logs</h2>
+        <table>
             <thead>
-               <tr>
-                  <th>Transaction ID</th>
-                  <th>Item ID</th>
-                  <th>Quantity</th>
-                  <th>Total</th>
-                  <th>Transaction Date</th>
-               </tr>
+                <tr>
+                    <th>Transaction ID</th>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                    <th>Transaction Date</th>
+                </tr>
             </thead>
             <tbody>
-               <?php while ($row = mysqli_fetch_array($query_run)): ?>
-                  <tr>
-                     <td><?= $row['id']; ?></td>
-                     <td><?= $row['item_id']; ?></td>
-                     <td><?= $row['quantity']; ?></td>
-                     <td><?= $row['total']; ?></td>
-                     <td><?= $row['transaction_date']; ?></td>
-                  </tr>
-               <?php endwhile; ?>
+                <?php if (count($transactions) > 0): ?>
+                    <?php foreach ($transactions as $transaction): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($transaction['transaction_id']) ?></td>
+                            <td><?= htmlspecialchars($transaction['item_name']) ?></td>
+                            <td><?= htmlspecialchars($transaction['quantity']) ?></td>
+                            <td>$<?= htmlspecialchars($transaction['total_price']) ?></td>
+                            <td><?= htmlspecialchars($transaction['transaction_date']) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="5" style="text-align: center;">No transactions found.</td>
+                    </tr>
+                <?php endif; ?>
             </tbody>
-         </table>
-      </div>
-   </div>
-   
-   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const transactionLink = document.getElementById("transactionLink");
-
-        // Check if this link was previously clicked and apply the saved background color
-        const isClicked = localStorage.getItem("transactionLinkClicked");
-        if (isClicked === "true") {
-            transactionLink.style.backgroundColor = "#4B293F";
-        }
-
-        // When the link is clicked
-        transactionLink.addEventListener("click", (event) => {
-            // Save the clicked state to localStorage
-            localStorage.setItem("transactionLinkClicked", "true");
-
-            // Apply the background color
-            transactionLink.style.backgroundColor = "#4B293F";
-        });
-    });
-</script>
+        </table>
+    </div>
 </body>
 </html>

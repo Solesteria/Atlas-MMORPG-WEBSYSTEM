@@ -66,7 +66,7 @@ $result = $conn->query("SELECT * FROM items");
                 <a href="transaction.php" class="action-btn">Transactions</a>
                 <a href="logs.php" class="action-btn">View Logs</a>
                 <a href="insert_item.php" class="action-btn" id="addItemLink">Add Item</a>
-                <a href="logout.php" class="logout-link">Logout</a>
+                <a href="../logout.php" class="logout-link">Logout</a>
             </div>
         </nav>
     </header>
