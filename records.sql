@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2024 at 02:02 PM
+-- Generation Time: Dec 18, 2024 at 03:44 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -39,7 +39,7 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`id`, `user_id`, `item_id`, `quantity`) VALUES
-(15, 10, 1, 2);
+(15, 10, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -93,6 +93,13 @@ CREATE TABLE `marketplace` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `marketplace`
+--
+
+INSERT INTO `marketplace` (`id`, `seller_name`, `seller_id`, `item_id`, `item_name`, `quantity`, `price`, `created_at`) VALUES
+(10, 'aries', 9, 1, 'Iron Helmet', 1, 1.00, '2024-12-18 14:37:29');
+
 -- --------------------------------------------------------
 
 --
@@ -118,7 +125,14 @@ CREATE TABLE `news` (
 
 INSERT INTO `news` (`id`, `date`, `avatar`, `news_type`, `author`, `title`, `subtitle`, `content`, `image`, `link`) VALUES
 (1, 'December 16, 2024', 'https://i.imgur.com/TSI7w2K.jpeg', 'Announcement', 'Cedric', 'Frostval x Friday the 13th', 'Wreck the Halls during part 1 of our Dark Double Holiday event!', 'Frostval is a time to celebrate at home surrounded by family and friends. But winter\'s chill and Friday the 13th\'s darkness can turn even the coziest celebration DEADLY. Log in and join special guest Aurelio Voltaire, his sweet little companion, Candy Claws, and the moglins of Frostvale as you prepare to celebrate part 1 of our double holiday event!', 'https://www.aq.com/cms/images/DN-FrostvalThe13th-Right.jpg', 'https://www.aq.com/cms/images/DN-FrostvalThe13th-Right.jpg'),
-(2, 'December 16, 2024', 'https://i.imgur.com/sZQahCt.jpeg', 'Update', 'Rechell', 'Atlas : Infinity News', 'Bubble, bubble, boil and... design notes.', 'We are back with horrifyingly spooky daily progress updates for <a href=\"#\">Atlas Quest Worlds: Infinity</a>. Do you like ghost stories? Imagine we are sitting around a campfire in the pitch black of night. I lean forward.... the light of the flame under-light\'s my face as I begin whispering this dark and sordid tale.', 'https://www.aq.com/cms/images/DN-AQWI-dailyupdate-10.jpg', 'https://www.aq.com/cms/images/DN-AQWI-dailyupdate-10.jpg');
+(2, 'December 16, 2024', 'https://i.imgur.com/sZQahCt.jpeg', 'Update', 'Rechell', 'Atlas : Infinity News', 'Bubble, bubble, boil and... design notes.', 'We are back with horrifyingly spooky daily progress updates for <a href=\"#\">Atlas Quest Worlds: Infinity</a>. Do you like ghost stories? Imagine we are sitting around a campfire in the pitch black of night. I lean forward.... the light of the flame under-light\'s my face as I begin whispering this dark and sordid tale.', 'https://www.aq.com/cms/images/DN-AQWI-dailyupdate-10.jpg', 'https://www.aq.com/cms/images/DN-AQWI-dailyupdate-10.jpg'),
+(3, 'December 18, 2024', 'https://i.imgur.com/3Ii8wrj.jpeg', 'Announcement', 'Gab', 'Sale', 'Buy now', 'New Item in Sale', '', ''),
+(4, 'December 18, 2024', 'https://i.imgur.com/TSI7w2K.jpeg', 'Announcement', 'Cedric', 'Guild Spotlight: MISFIT', 'Meet MISFIT: a Home for Every Hero', 'MISFIT is a thriving AQW guild where players of all levels come together to help, learn, and have fun! With community events, guides, and a mission to always lift others up, MISFIT proves that kindness is the ultimate win.', 'https://www.aq.com/cms/images/MISFIT-aqw-guild-spotlight-545.jpg', ''),
+(5, 'December 19, 2024', 'https://i.imgur.com/sZQahCt.jpeg', 'Update', 'Rechell', 'Event Release Calendar', 'New game updates every week', 'Check out our weekly game update calendar so you don\'t miss any of our new weekly releases! See them all here!', 'https://www.aq.com/cms/images/DN-Calendar-October2020.jpg', ''),
+(6, 'December 19, 2024', 'https://i.imgur.com/3Ii8wrj.jpeg', 'Announcement', 'Gab', 'The Wheel of Doom is BACK', 'Spin Swaggy\'s wheel to get prizes!', 'Five years ago, we launched the Wheels of Doom and Destiny from the Carnival of Fortune. They were one of AQWorlds\' most popular features and starting today... the Wheel of Doom is BACK! /join Doom and talk to Swaggy to buy Fortune Tickets, then spin the wheel and get prizes.', 'https://www.aq.com/cms/images/DN-WheelOfDoomReturnsFinal2-545.png', ''),
+(7, 'December 20, 2024', 'https://i.imgur.com/TSI7w2K.jpeg', 'Announcement', 'Cedric', 'Now available at HeroMart', 'Madness of Darkon Print at Heromart!', 'Madness is calling to you... will you answer? Dage the Evil and Darkon joined creative forces to create terrifyingly-epic print just in time for Halloween. Display it on your wall just... try not to stare too deeply at it before you fall asleep. Get yours here, and unlock two exclusive items and a character page badge in AdventureQuest Worlds!', 'https://www.aq.com/cms/images/DN-DarkonMadnessPrint.jpg', ''),
+(8, 'December 20, 2024', 'https://i.imgur.com/sZQahCt.jpeg', 'Announcement', 'Rechell', 'RPG Strategy: Unlikely Alliances', 'Good & Evil vs Chaos!', 'Decide whether you will be Good or Evil! Choose quickly, because Chaos monsters have already invaded Lore! Join thousands of players in the battle to defeat Drakath and his 13 Lords of Chaos, then return as we expand the world of Lore with new stories and zones each week.', 'https://www.aq.com/cms/images/webgraphic-13thlordofchaos-NewHP-545.jpg', ''),
+(9, 'December 20, 2024', 'https://i.imgur.com/TSI7w2K.jpeg', 'Announcement', 'Gab', 'New Releases Every Week', 'New Zones, Quests, Items, Classes.... and more!', 'AQWorlds is being developed right under your feet as you play it, and our world grows with new stories and zones each week! Whether you love high-tech, low-tech, super-mech, or fantasy games, we want to create the new gear, minigames, and monsters you\'re looking for!', 'https://www.aq.com/cms/images/aqw_chiralboss_NewHP_545.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -229,7 +243,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `items`
@@ -247,13 +261,13 @@ ALTER TABLE `logs`
 -- AUTO_INCREMENT for table `marketplace`
 --
 ALTER TABLE `marketplace`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `transaction_logs`
