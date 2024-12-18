@@ -10,7 +10,7 @@
     @include 'php/db_connection.php';
 
 
-    function sendemail_verify($userName, $email, $verify_token)
+    function sendemail_verify($username, $email, $verify_token)
     {
         $mail = new PHPMailer(true);
 
@@ -22,7 +22,7 @@
         $mail->Password = 'olzq ewvr emfi xhap';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
-        $mail->setFrom("rechellr5@gmail.com",$userName);
+        $mail->setFrom("rechellr5@gmail.com",$username);
         $mail->addAddress($email);
         $mail->isHTML(true);
         $mail->Subject = "Email Verification from ATLAS-MMORPG";
@@ -39,7 +39,7 @@
 
     if (isset($_POST['signup'])) 
     {
-        $userName = mysqli_real_escape_string($conn, $_POST['userName']);
+        $username = mysqli_real_escape_string($conn, $_POST['username']);
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $password = md5($_POST['password']);
         $confirmation = md5($_POST['confirmation']);
@@ -64,7 +64,7 @@
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Email exists or not
-        $check_email_query = "SELECT email FROM tb_user WHERE email='$email' LIMIT 1";
+        $check_email_query = "SELECT email FROM users WHERE email='$email' LIMIT 1";
         $check_email_query_run = mysqli_query($conn, $check_email_query);
 
         if (mysqli_num_rows($check_email_query_run) > 0)
@@ -75,13 +75,13 @@
 
         else
         {
-            $query = "INSERT INTO tb_user (userName, email, password, confirmation, user_type, verify_token) 
-                    VALUES ('$userName', '$email', '$password', '$confirmation', '$user_type', '$verify_token')";
+            $query = "INSERT INTO users (username, email, password, confirmation, user_type, verify_token) 
+                    VALUES ('$username', '$email', '$password', '$confirmation', '$user_type', '$verify_token')";
             $query_run = mysqli_query($conn, $query);
 
             if ($query_run)
             {
-                sendemail_verify("$userName", "$email", "$verify_token");
+                sendemail_verify("$username", "$email", "$verify_token");
                 $_SESSION['signup_status'] = "Registration Successfull! Please verify your Email Address.";
                 header("Location: signup.php");
             }
@@ -101,7 +101,7 @@
         $password = md5($_POST['password']);
         $user_type = $_POST['user_type'];
 
-        $select = "SELECT * FROM tb_user WHERE email = '$email' AND password = '$password' AND user_type = '$user_type'";
+        $select = "SELECT * FROM users WHERE email = '$email' AND password = '$password' AND user_type = '$user_type'";
 
         $result = mysqli_query($conn, $select);
 
@@ -111,13 +111,16 @@
 
             // Check if the password matches
             if ($row['password'] == $password) {
+                $_SESSION['user_id'] = $row['id'];
                 // Login success based on user type
                 if ($user_type == 'admin') {
-                    $_SESSION['admin_name'] = $row['userName'];
+                    $_SESSION['admin_name'] = $row['username'];
+                    $_SESSION['username'] = $row['username'];
                     header('location:admin/admin_page.php');
                     exit;
                 } elseif ($user_type == 'user') {
-                    $_SESSION['user_name'] = $row['userName'];
+                    $_SESSION['user_name'] = $row['username'];
+                    $_SESSION['username'] = $row['username'];
                     header('location:user/user_page.php');
                     exit;
                 }

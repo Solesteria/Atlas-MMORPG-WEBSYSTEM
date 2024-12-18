@@ -69,7 +69,7 @@
             <div class="signup">
                 <form action="checker.php" method="post">
                     <label for="chk" aria-hidden="true">Sign Up</label>
-                    <input type="text" name="userName" placeholder="User Name" required>
+                    <input type="text" name="username" placeholder="User Name" required>
                     <input type="email" name="email" placeholder="Email" required>
                     <input type="password" name="password" placeholder="Password" id="showPass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                     <div class="eye-pass">
