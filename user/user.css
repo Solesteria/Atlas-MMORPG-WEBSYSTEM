@@ -395,3 +395,12 @@ body {
     margin-left: 950px;
     margin-top: 30px;
 }
+
+button {
+    background-color: transparent;
+    border: none;
+}
+
+button {
+    cursor: pointer;
+}

@@ -106,34 +106,34 @@
         $result = mysqli_query($conn, $select);
 
         // Check if the email exists with the specified user type
-    if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_array($result);
+        if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_array($result);
 
-        // Check if the password matches
-        if ($row['password'] == $password) {
-            // Login success based on user type
-            if ($user_type == 'admin') {
-                $_SESSION['admin_name'] = $row['userName'];
-                header('location:admin/admin_page.php');
-                exit;
-            } elseif ($user_type == 'user') {
-                $_SESSION['user_name'] = $row['userName'];
-                header('location:user/user_page.php');
+            // Check if the password matches
+            if ($row['password'] == $password) {
+                // Login success based on user type
+                if ($user_type == 'admin') {
+                    $_SESSION['admin_name'] = $row['userName'];
+                    header('location:admin/admin_page.php');
+                    exit;
+                } elseif ($user_type == 'user') {
+                    $_SESSION['user_name'] = $row['userName'];
+                    header('location:user/user_page.php');
+                    exit;
+                }
+            } else {
+                $_SESSION['login_status'] = 'Incorrect password!';
+                header('location:login.php');
                 exit;
             }
-        } else {
-            $_SESSION['login_status'] = 'Incorrect password!';
+        } 
+        
+        else {
+            // No email found for the selected user type
+            $_SESSION['login_status'] = 'No account found with this email and selected user type.';
             header('location:login.php');
             exit;
         }
-    } 
-    
-    else {
-        // No email found for the selected user type
-        $_SESSION['login_status'] = 'No account found with this email and selected user type.';
-        header('location:login.php');
-        exit;
-    }
         
     }
 ?>

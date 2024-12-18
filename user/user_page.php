@@ -1,4 +1,4 @@
-<?php
+<a?php
     @include 'php/db_connection.php';
 
     session_start();
@@ -59,10 +59,10 @@
 
         <div class="main-content">
             <div class="button-buy">
-                <a href="#"><img src="../images/buy.png" width="350px"></a>
+                <button><img src="../images/buy.png" width="350px"></button>
             </div>
             <div class="button-sell">
-               <button onclick=""><img src="../images/sell.png" width="350px"></button>
+               <button onclick="window.location.href='sell.html';"><img src="../images/sell.png" width="350px"></button>
             </div>
         </div>
         <iframe src="https://discord.com/widget?id=1312823529284046848&theme=dark" width="450" height="550" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" class="discord-css"></iframe>

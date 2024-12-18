@@ -6,7 +6,7 @@ async function fetchNews() {
     try {
         // Load the news data only once
         if (newsData.length === 0) {
-            const response = await fetch('../fetch_news.php');
+            const response = await fetch('fetch_news.php');
             newsData = await response.json();
         }
 
@@ -44,6 +44,13 @@ async function fetchNews() {
             `;
 
             newsFeed.appendChild(div);
+        }
+
+        // Disable the button if all items are loaded
+        if (currentIndex >= newsData.length) {
+            const button = document.querySelector('button:not(.btn-search)');
+            button.disabled = true;
+            button.textContent = 'No More News';
         }
     } catch (error) {
         console.error('Error fetching news:', error);

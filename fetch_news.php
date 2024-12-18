@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Database connection settings
 $host = "localhost";
 $user = "root"; // Default XAMPP user
