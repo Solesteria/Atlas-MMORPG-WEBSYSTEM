@@ -9,10 +9,18 @@ if (!isset($_SESSION['user_id'])) {
 
 $userId = $_SESSION['user_id'];
 
-// Fetch all items from the marketplace
-$stmt = $pdo->prepare("SELECT * FROM marketplace");
+// Fetch all items from the marketplace and include item details
+$stmt = $pdo->prepare("
+    SELECT marketplace.*, items.image 
+    FROM marketplace 
+    LEFT JOIN items ON marketplace.item_name = items.name
+");
 $stmt->execute();
 $marketplaceItems = $stmt->fetchAll();
+if (!$marketplaceItems) {
+    die("No items found in the marketplace.");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -28,24 +36,27 @@ $marketplaceItems = $stmt->fetchAll();
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Seller ID</th>
+                <th>Seller Name</th>
+                <th>Item Name</th>
                 <th>Item ID</th>
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Created At</th>
+                <th>Image</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($marketplaceItems as $item): ?>
                 <tr>
                     <td><?php echo htmlspecialchars($item['id']); ?></td>
-                    <td><?php echo htmlspecialchars($item['seller_id']); ?></td>
+                    <td><?php echo htmlspecialchars($item['seller_name']); ?></td>
+                    <td><?php echo htmlspecialchars($item['item_name']); ?></td>
                     <td><?php echo htmlspecialchars($item['item_id']); ?></td>
                     <td><?php echo htmlspecialchars($item['quantity']); ?></td>
                     <td><?php echo htmlspecialchars($item['price']); ?></td>
                     <td><?php echo htmlspecialchars($item['created_at']); ?></td>
+                    <td><img src="<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['item_name']); ?>" width="50"></td>
                     <td>
-                        <!-- Buy Form -->
                         <form action="buy.php" method="POST">
                             <input type="hidden" name="marketplace_id" value="<?php echo $item['id']; ?>">
                             <input type="number" name="quantity" min="1" max="<?php echo $item['quantity']; ?>" required>
