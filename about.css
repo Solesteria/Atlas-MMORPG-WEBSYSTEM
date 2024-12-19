@@ -8,6 +8,7 @@ body {
     font-family: "Press Start";
     background-color: #18051D;
     color: white;
+    font-size: medium;
 }
 
 ::-webkit-scrollbar {

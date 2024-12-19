@@ -1,8 +1,12 @@
 <?php
-    $conn = mysqli_connect("localhost", "root", "", "records");
+$host = "localhost";
+$username = "root";
+$password = "";
+$dbname = "records";
 
-    if ($conn->connect_error)
-    {
-        die ("Connection Failed!: " . $conn->connect_error);
-    }
+$conn = mysqli_connect($host, $username, $password, $dbname);
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 ?>
